@@ -4,8 +4,6 @@ library(tidyr)
 library(dplyr)
 library(randomForest)
 library(rpart)
-library(gbm)
-library(party)
 
 
 train <- read.csv("train.csv", header = TRUE, stringsAsFactors = FALSE)
@@ -183,40 +181,25 @@ test <- all[892:1309,]
 surv_fit <- randomForest(as.factor(Survived) ~ Pclass + Sex + Age + Embarked + Family + Deck + Titles + FamilySize, data=train, importance=TRUE, ntree=2000)
 #0.77990
 
-surv_fit <- randomForest(as.factor(Survived) ~ Pclass + Sex + Age + Embarked + Family + Titles + FamilySize, data=train, importance=TRUE, ntree=2000)
-#0.68890 (-Deck)
+varImpPlot(surv_fit)
 
 surv_fit <- randomForest(as.factor(Survived) ~ Pclass + Sex + Age + Embarked + Deck + Titles + FamilySize, data=train, importance=TRUE, ntree=2000)
 #0.78468 (-Family)
 
-surv_fit <- rpart(Survived ~ Pclass + Sex + Age + Embarked + Deck + Titles + FamilySize, data=train, method="class")
-#0.77511 (-Family, Decision Tree)
-
-surv_fit <- randomForest(as.factor(Survived) ~ Pclass + Sex + Age2 + Embarked + Deck + Titles + FamilySize, data=train, importance=TRUE, ntree=2000)
-#0.77990 (-Family +Age2)
-
-surv_fit <- randomForest(as.factor(Survived) ~ Pclass + Sex + Age + Embarked + Titles + FamilySize, data=train, importance=TRUE, ntree=2000)
-#0.78947 (-Family -Deck)
+varImpPlot(surv_fit)
 
 surv_fit <- randomForest(as.factor(Survived) ~ Pclass + Sex + Age + Embarked + Titles + FamilySize + Fare, data=train, importance=TRUE, ntree=2000)
-#0.79425 (-Family -Deck + Fare)
+#0.79425 (-Family -Deck +Fare)
 
-surv_fit_logres <- glm(as.factor(Survived)~Pclass + Sex + Age + Embarked + Titles + FamilySize + Fare + Deck, family = binomial,data=train)
-#0.76076 (-Family -Deck + Fare, Logistic Regression)
+surv_fit <- randomForest(as.factor(Survived) ~ Pclass + Sex + AgeBrackets + Embarked + Titles + FamilySize + Fare + IsSingle + NoParentMinor, data=train, ntree=2000)
+#0.79425 (-Age +AgeBrackets +IsSingle +NoParentMinor)
+#Score didn't improve.
 
-surv_fit <- cforest(as.factor(Survived) ~ Pclass + Sex + Age + Embarked + Titles + FamilySize + Fare, data=train, controls=cforest_unbiased(ntree=2000, mtry=3))
-#0.79904 (-Family -Deck + Fare, Conditional Random Forest)
+surv_fit_logres <- glm(as.factor(Survived)~ Pclass + Sex + Age + Embarked + Titles + FamilySize + Fare, family = binomial, data=train)
+#0.77033 (-Family -Deck + Fare, Logistic Regression)
 
-surv_fit <- cforest(as.factor(Survived) ~ Pclass + Sex + AgeBrackets + Embarked + Titles + FamilySize + Fare, data=train, controls=cforest_unbiased(ntree=2000, mtry=3))
-#0.80861 (-Family -Deck + Fare -Age +AgeBrackets, Conditional Random Forest)
-
-surv_fit <- cforest(as.factor(Survived) ~ Pclass + Sex + AgeBrackets + Embarked + Titles + FamilysizeBrackets + FareBrackets, data=train, controls=cforest_unbiased(ntree=2000, mtry=3))
-#0.78947 (-Family -Deck + Fare -Age +AgeBrackets +FareBrackets +FamilySizeBrackets -FamilySize -Fare, Conditional Random Forest)
-
-surv_fit <- cforest(as.factor(Survived) ~ Pclass + Sex + AgeBrackets + Embarked + Titles + FamilySize + Fare + IsSingle + NoParentMinor, data=train, controls=cforest_unbiased(ntree=1000, mtry=3))
-#0.80382 (-Family -Deck + Fare -Age +AgeBrackets+ IsSingle + NoParentMinor, Conditional Random Forest)
-
-
+surv_fit_cart <- rpart(as.factor(Survived) ~ Pclass + Sex + Age + Embarked + Titles + FamilySize + Fare, data=train, method="class")
+#0.79904
 
 #Logistic Regressions Prediction
 summary(surv_fit_logres)
@@ -225,8 +208,12 @@ test$Survived <- as.numeric(Prediction_logres >= 0.5)
 submission_file_logres <- data.frame(test[c("PassengerId","Survived")])
 write.csv(submission_file_logres, file = "submission_logres.csv", row.names = FALSE)
 
-#(Conditional) Random Forest | Decision Tree Prediction
-Prediction <- predict(surv_fit, test, OOB=TRUE, type = "response")
+#Random Forest Prediction
+Prediction <- predict(surv_fit, test)
 submission_file <- data.frame(PassengerId = test$PassengerId, Survived = Prediction)
 write.csv(submission_file, file = "submission.csv", row.names = FALSE)
 
+#Decision Tree Prediction
+Prediction <- predict(surv_fit_cart, test, type="class")
+submission_file <- data.frame(PassengerId = test$PassengerId, Survived = Prediction)
+write.csv(submission_file, file = "submission_cart.csv", row.names = FALSE)

@@ -5,8 +5,7 @@ library(randomForest)
 library(party)
 library(mice)
 library(party)
-library(xgboost)
-library(Matrix)
+
 
 train <- read.csv("train_mk_hc.csv", header = TRUE, stringsAsFactors = TRUE)
 test <- read.csv("test_mk_hc.csv", header = TRUE, stringsAsFactors = TRUE)
@@ -191,11 +190,13 @@ test <- all[43401:62001,]
 #---Random Forest--- #0.7994
 rf <- randomForest(stroke ~ gender + age + ever_married + work_type + 
                      avg_glucose_level + bmi + hypertension + heart_disease + 
-                     Residence_type +smoking_status + diabetes + isOverweight ,data=train, ntree=1000, importance=TRUE)
+                     Residence_type +smoking_status + diabetes + isOverweight, 
+                    data=train, ntree=1000, importance=TRUE)
 
 rf <- randomForest(stroke ~ gender + age + ever_married + work_type + 
                      avg_glucose_level + bmi + hypertension + heart_disease + 
-                     Residence_type + smoking_status + diabetes + isOverweight + condition_count, data=train, ntree=1000, importance=TRUE)
+                     Residence_type + smoking_status + diabetes + isOverweight + 
+                     condition_count, data=train, ntree=1000, importance=TRUE)
 
 
 Prediction <- predict(rf,test, type="prob")[,2]
@@ -204,59 +205,13 @@ write.csv(submission_file, file = "rf.csv", row.names = FALSE)
 #---/RandomForest---
 
 
-
 #---Conditional Random Forest--- #0.81744
 crf <- cforest(stroke ~ gender + age + ever_married + work_type + 
                  avg_glucose_level + bmi + hypertension + heart_disease + 
-                 Residence_type + smoking_status + diabetes + isOverweight + condition_count, data=train, controls=cforest_unbiased(ntree=50, mtry=3))
+                 Residence_type + smoking_status + diabetes + isOverweight + 
+                 condition_count, data=train, controls=cforest_unbiased(ntree=50, mtry=3))
 
 Prediction_crf <- predict(crf, test, OOB=TRUE, type = "prob")
 submission_file_crf <- data.frame(id = test$id, stroke = sapply(Prediction_crf, "[[", 2))
 write.csv(submission_file_crf, file = "crf.csv", row.names = FALSE)
 #---/Conditional Random Forest---
-
-
-
-#---XGBoost--- #0.81744
-train.label  <- train$stroke
-test.label   <- test$stroke
-
-options(na.action='na.pass')
-dtrain  <- sparse.model.matrix(stroke ~ .-1, data=train[,!names(train) %in% c("id","hypertension","heart_disease","smoking_status","hasboth","bmi_category","obese_hyper","avg_glucose_level")])
-dtest   <- sparse.model.matrix(stroke ~ .-1, data=test[,!names(test) %in% c("id","hypertension","heart_disease","smoking_status","hasboth","bmi_category","obese_hyper","avg_glucose_level")])
-options(na.action='na.omit')
-
-dim(dtrain)
-dim(dtest)
-
-param <- list(objective   = "binary:logistic",
-              eval_metric = "error",
-              max_depth   = 7,
-              eta         = 0.1,
-              gammma      = 1,
-              colsample_bytree = 0.5,
-              min_child_weight = 1)
-
-xgb <- xgboost(params  = param,
-                           data    = dtrain,
-                           label   = as.numeric(as.character(train.label)), 
-                           nrounds = 3000,
-                           print_every_n = 100,
-                           verbose = 1)
-
-pred <- predict(xgb, dtest, outputmargin=TRUE)
-submission_file_xgb <- data.frame(id = test$id, stroke = pred)
-write.csv(submission_file_crf, file = "xgb2.csv", row.names = FALSE)
-
-# Get the trained model
-model <- xgb.dump(xgb, with_stats=TRUE)
-
-# Get the feature real names
-names <- dimnames(dtrain)[[2]]
-
-# Compute feature importance matrix
-importance_matrix <- xgb.importance(names, model=xgb)[0:20] # View top 20 most important features
-
-# Plot
-xgb.plot.importance(importance_matrix)
-#---/XGBoost---
