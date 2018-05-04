@@ -198,7 +198,7 @@ I think the demand and therefore the prices might be effected by seasonality.
 hist(as.numeric(all$MoSold)) 
 ```
 
-<img src="house_pricing_files/figure-markdown_github/unnamed-chunk-27-1.png" style="display: block; margin: auto;" /> Indeed, the seasons clearly effect the amount of house sales. We can say that April to June is the hottest season to buy a house. Followed by January to March and July. Creating **BuyingSeason** to rank different demand seasons for houses.
+<img src="house_pricing_files/figure-markdown_github/unnamed-chunk-27-1.png" style="display: block; margin: auto;" /> <br> Indeed, the seasons clearly effect the amount of house sales. We can say that April to June is the hottest season to buy a house. Followed by January to March and July. Creating **BuyingSeason** to rank different demand seasons for houses.
 
 ``` r
 all$BuyingSeason <- 1
@@ -422,26 +422,26 @@ head(mat[, c("Feature", "Gain")], n=20)
 ```
 
     ##          Feature        Gain
-    ##  1:  OverallQual 0.647036980
-    ##  2:    GrLivArea 0.099059705
-    ##  3:  TotalBsmtSF 0.037355716
-    ##  4:   BsmtFinSF1 0.033151992
-    ##  5:    TotalArea 0.026801405
-    ##  6:     BsmtQual 0.024459745
-    ##  7:  KitchenQual 0.015256222
-    ##  8:   GarageArea 0.012261161
-    ##  9:          Age 0.011764178
-    ## 10:    X2ndFlrSF 0.009525021
-    ## 11:    X1stFlrSF 0.009302190
-    ## 12:  FireplaceQu 0.005716108
-    ## 13:  OverallCond 0.005311237
-    ## 14:  LotFrontage 0.004464999
-    ## 15: TotRmsAbvGrd 0.004087480
-    ## 16:  CentralAirY 0.002975212
-    ## 17:    BsmtUnfSF 0.002649693
-    ## 18: GarageFinish 0.002408023
-    ## 19: BsmtExposure 0.002369781
-    ## 20:  OpenPorchSF 0.002242905
+    ##  1:  OverallQual 0.647245246
+    ##  2:    GrLivArea 0.099074784
+    ##  3:  TotalBsmtSF 0.037358743
+    ##  4:   BsmtFinSF1 0.033150868
+    ##  5:    TotalArea 0.026807717
+    ##  6:     BsmtQual 0.024466616
+    ##  7:  KitchenQual 0.015260488
+    ##  8:   GarageArea 0.012261762
+    ##  9:          Age 0.011753252
+    ## 10:    X2ndFlrSF 0.009519560
+    ## 11:    X1stFlrSF 0.009295845
+    ## 12:  FireplaceQu 0.005716066
+    ## 13:  OverallCond 0.005308439
+    ## 14:  LotFrontage 0.004453869
+    ## 15: TotRmsAbvGrd 0.004087832
+    ## 16:  CentralAirY 0.002976180
+    ## 17:    BsmtUnfSF 0.002639007
+    ## 18: GarageFinish 0.002408807
+    ## 19: BsmtExposure 0.002366743
+    ## 20:  OpenPorchSF 0.002236688
 
 So the OverallQuality feature is without a doubt the leading force behind our predictions. This is not really a surprise however I would have expected the area related features to have a bigger impact.
 
