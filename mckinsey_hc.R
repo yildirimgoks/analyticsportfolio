@@ -7,6 +7,7 @@ library(mice)
 library(party)
 
 
+
 train <- read.csv("train_mk_hc.csv", header = TRUE, stringsAsFactors = TRUE)
 test <- read.csv("test_mk_hc.csv", header = TRUE, stringsAsFactors = TRUE)
 
@@ -19,7 +20,7 @@ all$stroke <- as.factor(all$stroke)
 
 #-----EXPLORATORY ANALYSIS-----
 
-table(is.na(all))
+table(summary(is.na(all)))
 all[all$smoking_status=="", "smoking_status"] <- NA
 
 #bmi & smoking_status have NA / blank values. They respectively have about 3.3% and 31% missing value ratio.
@@ -203,7 +204,7 @@ Prediction <- predict(rf,test, type="prob")[,2]
 submission_file <- data.frame(id = test$id, stroke = Prediction)
 write.csv(submission_file, file = "rf.csv", row.names = FALSE)
 #---/RandomForest---
-
+**
 
 #---Conditional Random Forest--- #0.81744
 crf <- cforest(stroke ~ gender + age + ever_married + work_type + 
