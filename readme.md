@@ -1,5 +1,3 @@
-# **Göksu Yıldırım - Data Science Works**
-
 ### **House Pricing Prediction**
 ##### Predicting sale prices for houses, given labeled data for previousy sold homes.
 A regression problem solved using XGBoost & 10-fold cross validation.
