@@ -2,7 +2,6 @@ library(mice)
 library(ggplot2)
 library(tidyr)
 library(dplyr)
-library(randomForest)
 library(rpart)
 
 
@@ -198,7 +197,7 @@ surv_fit <- randomForest(as.factor(Survived) ~ Pclass + Sex + AgeBrackets + Emba
 surv_fit_logres <- glm(as.factor(Survived)~ Pclass + Sex + Age + Embarked + Titles + FamilySize + Fare, family = binomial, data=train)
 #0.77033 (-Family -Deck + Fare, Logistic Regression)
 
-surv_fit_cart <- rpart(as.factor(Survived) ~ Pclass + Sex + Age + Embarked + Titles + FamilySize + Fare, data=train, method="class")
+surv_fit_cart <- rpart(as.factor(Survived) ~ Pclass + Sex + Age + Embarked + Titles + FamilySize + Fare + Deck, data=train, method="class")
 #0.79904
 
 #Logistic Regressions Prediction
