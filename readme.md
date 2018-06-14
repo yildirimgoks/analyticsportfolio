@@ -1,3 +1,9 @@
+### **Exploring Retail Sales**
+##### Exploratory data analysis on sales of Rossman stores in Germany
+A learning practice in visualization using ggplot2 and EDA.
+
+[Link (R Markdown)](https://github.com/yildirimgoks/analyticsportfolio/blob/master/Retail_Prediction_RMD.md)
+
 ### **House Pricing Prediction**
 ##### Predicting sale prices for houses, given labeled data for previousy sold homes.
 A regression problem solved using XGBoost & 10-fold cross validation.
