@@ -1,5 +1,5 @@
-### **Analysis on Taylor Swift - reputation**
-##### Using audio data from Spotify and lyrical sentiment analysis to compare Taylor Swift's latest album to her previous work
+### **Analysis on *Taylor Swift - reputation***
+##### Using audio data from Spotify and lyrical sentiment analysis using *tidyText* to compare Taylor Swift's latest album to her previous work
 First exercise without a ready-to-go dataset. First time working with APIs and pipes (%>%). Further practice with ggplot2.
 
 [Link (R Markdown)](https://github.com/yildirimgoks/analyticsportfolio/blob/master/Taylor_Swift.md)
