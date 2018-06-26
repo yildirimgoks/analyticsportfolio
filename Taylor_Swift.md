@@ -352,7 +352,7 @@ The \# of negative and positive words seem to be similar throughout the discogra
 
 ### Closing
 
-I have done this analysis because althought I enjoyed almost all of Taylor Swift's previous albums as a guilty-pleasure, I couldn't really get into *reputation* and wanted to know why. I think it's mostly because I used Taylor Swift as a "brain-cleaner", with catchy, sort of silly songs, that I don't need to pay much attention to however *reputation*'s darker, more serious tone doesn't fit into that. It may grow on be, but sadly, it won't be the same as others :)
+I have done this analysis because although I enjoyed almost all of Taylor Swift's previous albums as a guilty-pleasure, I couldn't really get into *reputation* and wanted to know why. I think it's mostly because I used Taylor Swift as a "brain-cleaner", with catchy, sort of silly songs, that I don't need to pay much attention to however *reputation*'s darker, more serious tone doesn't fit into that. It may grow on be, but sadly, it won't be the same as others :)
 
 In terms of learning, *I was aiming for a project where I did not start with a collected and cleaned dataset like my previous works*. So this has been a good start. I had to collect the data I want **using APIs** from two different platforms, and I had some 'training wheels' in the form of easy to use packages. Also, initially not intended, I also finally learned working using the **pipeline method**. My only comment: I should have done that earlier!
 
