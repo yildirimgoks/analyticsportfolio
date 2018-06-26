@@ -1,6 +1,12 @@
+### **Analysis on Taylor Swift - reputation**
+##### Using audio data from Spotify and lyrical sentiment analysis to compare Taylor Swift's latest album to her previous work
+First exercise without a ready-to-go dataset. First time working with APIs and pipes (%>%). Further practice with ggplot2.
+
+[Link (R Markdown)](https://github.com/yildirimgoks/analyticsportfolio/blob/master/Taylor_Swift.md)
+
 ### **Exploring Retail Sales**
 ##### Exploratory data analysis on sales of Rossman stores in Germany
-A learning practice in visualization using ggplot2 and EDA.
+A learning practice in visualization using ggplot2, and exploratory data analysis.
 
 [Link (R Markdown)](https://github.com/yildirimgoks/analyticsportfolio/blob/master/Retail_Prediction_RMD.md)
 
