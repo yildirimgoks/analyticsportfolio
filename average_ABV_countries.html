@@ -1,0 +1,193 @@
+<!-- GeoChart generated in R 3.5.1 by googleVis 0.6.2 package -->
+<!-- Wed Aug 15 15:11:13 2018 -->
+
+
+<!-- jsHeader -->
+<script type="text/javascript">
+
+
+// jsData 
+function gvisDataGeoChartID1cc8c2b79ae () {
+var data = new google.visualization.DataTable();
+var datajson =
+[
+ [
+"Australia",
+0
+],
+[
+"Austria",
+4.9
+],
+[
+"Belgium",
+8.057575758
+],
+[
+"Brazil",
+4.6
+],
+[
+"Canada",
+5.535714286
+],
+[
+"China / People's Republic of China",
+4.8
+],
+[
+"Czech Republic",
+4.4
+],
+[
+"Denmark",
+8.3
+],
+[
+"England",
+5.111111111
+],
+[
+"France",
+7.5
+],
+[
+"Germany",
+5.772727273
+],
+[
+"Guatemala",
+4.2
+],
+[
+"Iceland",
+6.6
+],
+[
+"Ireland",
+5.425
+],
+[
+"Israel",
+6
+],
+[
+"Italy",
+5.9
+],
+[
+"Japan",
+4.9
+],
+[
+"Mexico",
+4.375
+],
+[
+"Netherlands",
+10
+],
+[
+"Poland",
+9.5
+],
+[
+"Russia",
+8.2
+],
+[
+"Scotland",
+6.166666667
+],
+[
+"Spain",
+4.8
+],
+[
+"Sweden",
+4.5
+],
+[
+"United States",
+7.253863874
+] 
+];
+data.addColumn('string','Brewery.Country');
+data.addColumn('number','Mean.ABV');
+data.addRows(datajson);
+return(data);
+}
+
+
+// jsDrawChart
+function drawChartGeoChartID1cc8c2b79ae() {
+var data = gvisDataGeoChartID1cc8c2b79ae();
+var options = {};
+options["width"] = 556;
+options["height"] = 347;
+options["dataMode"] = "regions";
+
+
+    var chart = new google.visualization.GeoChart(
+    document.getElementById('GeoChartID1cc8c2b79ae')
+    );
+    chart.draw(data,options);
+    
+
+}
+  
+
+
+// jsDisplayChart
+(function() {
+var pkgs = window.__gvisPackages = window.__gvisPackages || [];
+var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
+var chartid = "geochart";
+  
+// Manually see if chartid is in pkgs (not all browsers support Array.indexOf)
+var i, newPackage = true;
+for (i = 0; newPackage && i < pkgs.length; i++) {
+if (pkgs[i] === chartid)
+newPackage = false;
+}
+if (newPackage)
+  pkgs.push(chartid);
+  
+// Add the drawChart function to the global list of callbacks
+callbacks.push(drawChartGeoChartID1cc8c2b79ae);
+})();
+function displayChartGeoChartID1cc8c2b79ae() {
+  var pkgs = window.__gvisPackages = window.__gvisPackages || [];
+  var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
+  window.clearTimeout(window.__gvisLoad);
+  // The timeout is set to 100 because otherwise the container div we are
+  // targeting might not be part of the document yet
+  window.__gvisLoad = setTimeout(function() {
+  var pkgCount = pkgs.length;
+  google.load("visualization", "1", { packages:pkgs, callback: function() {
+  if (pkgCount != pkgs.length) {
+  // Race condition where another setTimeout call snuck in after us; if
+  // that call added a package, we must not shift its callback
+  return;
+}
+while (callbacks.length > 0)
+callbacks.shift()();
+} });
+}, 100);
+}
+
+
+// jsFooter
+</script>
+
+
+<!-- jsChart -->  
+<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartGeoChartID1cc8c2b79ae"></script>
+
+
+<!-- divChart -->
+  
+<div id="GeoChartID1cc8c2b79ae" 
+  style="width: 556; height: 347;">
+</div>
+
