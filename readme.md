@@ -4,6 +4,8 @@
 ##### A look into English-speaking movies, award winner and nominees from 1934 to 2017 using data from IMDb, Kaggle and self-curation.
 An exercise with a very fruitful and teaching preprocessing part. The multi-million row IMDb datasets, filtered and enhanced with webcrawling will probably inspire more analysis later on.
 
+###### Read
+
 [Link (R Markdown)](https://github.com/yildirimgoks/analyticsportfolio/blob/master/proper_imdb_notebook_3.md)
 
 ### **Analysis on *Taylor Swift - reputation***
