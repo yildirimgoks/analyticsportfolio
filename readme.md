@@ -2,6 +2,8 @@
 ##### A look into English-speaking movies, award winner and nominees from 1934 to 2017 using data from IMDb, Kaggle and self-curation.
 An exercise with a very fruitful and teaching preprocessing part. The multi-million row IMDb datasets, filtered and enhanced with webcrawling will probably inspire more analysis later on.
 
+[Link (R Markdown)](https://github.com/yildirimgoks/analyticsportfolio/blob/master/proper_imdb_notebook_3.md)
+
 ### **Analysis on *Taylor Swift - reputation***
 ##### Using audio data from Spotify and lyrical sentiment analysis using *tidyText* to compare Taylor Swift's latest album to her previous work
 First exercise without a ready-to-go dataset. First time working with APIs and pipes (%>%). Further practice with ggplot2.
