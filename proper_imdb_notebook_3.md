@@ -184,7 +184,9 @@ We can finally create some pretty charts to see if such a thing as "oscar bait" 
 prop.table(table(ratings_title_filtered$genre, ratings_title_filtered$oscarStatus),1)
 ```
 
-![](proptable.jpg) Well, some genres definitely seem to have a better chance at the Oscars. Let's create a stacked bar chart to get a clearer view.
+![](proptable.JPG)
+
+Well, some genres definitely seem to have a better chance at the Oscars. Let's create a stacked bar chart to get a clearer view.
 
 ``` r
 plot_1 <- exclude_these <- c(NA, "sport", "news", "film", "fi", "documentary", "adult", "music","family","western")
